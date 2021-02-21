@@ -1,3 +1,8 @@
+import os, json
+os.path.append('/home/jt2565/diar/rd-diarization')
+from RDSV.util import *
+
+
 label = 20 # unknown speaker label counter (leave room for 20 judges)
 process_sd=False
 
