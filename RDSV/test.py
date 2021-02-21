@@ -10,6 +10,7 @@ from typing import Union, List
 from time import perf_counter as timer
 
 from VoiceEncoder.voice_encoder import VoiceEncoder
+from VoiceEncoder.hparams import *
 from utils import RefAudioLibrary, Diarize
 from param import *
 
