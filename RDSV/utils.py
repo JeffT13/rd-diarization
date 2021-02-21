@@ -1,5 +1,6 @@
 import json
 import numpy as np
+from VoiceEncode.util import getDiary
 
 class RefAudioLibrary:
   def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, save=False, unref_constant = 'UnRefSpkr'):

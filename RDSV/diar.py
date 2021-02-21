@@ -11,7 +11,7 @@ from param import *
 # Build RAL
 scotus_ral = RefAudioLibrary(c_set, inf_lab_path, rttm_path, sd_path)
 
-for case in d_set:
+for wav in d_set:
     case = wav.split('.')[0]
     print('Diarizing Case:', case)
     embed = np.load(inf_lab_path+case+'_embeds.npy')

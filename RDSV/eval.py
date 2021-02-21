@@ -8,7 +8,7 @@ from param import *
 eval_dict = {}
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
-for case in d_set:
+for wav in d_set:
     case = wav.split('.')[0]
     print('evaluating performance on case', case)
     predict = case+'_rdsv.rttm'
@@ -19,7 +19,7 @@ for case in d_set:
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
     print()
     
-for case in t_set:
+for wav in t_set:
     case = wav.split('.')[0]
     print('evaluating performance on case', case)
     predict = case+'_rdsv.rttm'
