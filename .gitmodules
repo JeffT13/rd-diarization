@@ -1,0 +1,3 @@
+[submodule "VoiceEncoder"]
+	path = VoiceEncoder
+	url = https://github.com/JeffT13/VoiceEncoder.git
