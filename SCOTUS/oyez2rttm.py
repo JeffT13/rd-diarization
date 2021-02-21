@@ -76,7 +76,7 @@ if os.path.exists(audio_path):
         t_set = cases[d_set_count:]
     
     set_dict = {'c':c_set, 'd':d_set, 't':t_set}
-    with open(fp+'set_file.json', 'w') as setfile:  
+    with open(set_path, 'w') as setfile:  
         json.dump(set_dict, setfile) 
     print('Case Set Dict Saved')
 
