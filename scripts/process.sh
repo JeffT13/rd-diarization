@@ -7,5 +7,5 @@
 #SBATCH --job-name=D
 #SBATCH --output=result.out
 
-python diar.py
-python eval.py
+python ./RDSV/diar.py
+python ./RDSV/eval.py

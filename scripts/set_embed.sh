@@ -8,4 +8,4 @@
 #SBATCH --job-name=E
 #SBATCH --output=runembed.out
 
-python embed.py
+python ./RDSV/embed.py
