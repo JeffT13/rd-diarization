@@ -12,7 +12,8 @@ with open(set_path) as json_file:
     set_dict = json.load(json_file)
     
 # Build RAL
-scotus_ral = RefAudioLibrary(set_dict['c'], inf_lab_path, rttm_path, sd_path)
+temp = [item.split('.')[0] for item in set_dict['c']]
+scotus_ral = RefAudioLibrary(temp, inf_lab_path, rttm_path, sd_path)
 
 for wav in set_dict['d']:
     case = wav.split('.')[0]

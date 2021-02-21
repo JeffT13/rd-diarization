@@ -4,7 +4,8 @@ from VoiceEncoder.util import getDiary
 
 class RefAudioLibrary:
   def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, save=False, unref_constant = 'UnRefSpkr'):
-    self.case_set = [item.split['.'][0] for item in c]
+  
+    self.case_set = c
     self.embed = embed_path
     self.rttm = rttm_path
     self.judge_only = judge_only
