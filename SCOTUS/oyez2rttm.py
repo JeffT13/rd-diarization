@@ -57,3 +57,28 @@ if process_sd:
   print('New Spkr Dict Saved')
   with open(sd_path, 'w') as outfile:  
     json.dump(spkr_dict, outfile) 
+
+
+
+#Generate random case sets
+if os.path.exists(audio_path):
+    cases = os.listdir(audio_path)
+    if seed is not None:
+        random.Random(seed).shuffle(cases)
+    else:
+        random.Random().shuffle(cases)
+        
+    c_set = cases[:c_set_count]
+    d_set = cases[c_set_count:(d_set_count+c_set_count)]
+    if t_lim is not None:
+        t_set = cases[d_set_count:t_lim]
+    else:
+        t_set = cases[d_set_count:]
+    
+    set_dict = {'c':c_set, 'd':d_set, 't':t_set}
+    with open(fp+'set_file.json', 'w') as setfile:  
+        json.dump(set_dict, setfile) 
+    print('Case Set Dict Saved')
+
+else:
+    print('File paths do not exist')

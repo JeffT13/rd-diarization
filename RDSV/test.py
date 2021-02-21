@@ -11,7 +11,7 @@ from time import perf_counter as timer
 
 from VoiceEncoder.voice_encoder import VoiceEncoder
 from VoiceEncoder.hparams import *
-from utils import RefAudioLibrary, Diarize
+from rdsv import RefAudioLibrary, Diarize
 from param import *
 
 print(mel_window_length, audio_norm_target_dBFS )

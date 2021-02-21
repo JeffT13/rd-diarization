@@ -5,10 +5,14 @@ from pyannote.database.util import load_rttm
 from pyannote.metrics.diarization import DiarizationErrorRate
 from param import *
 
+with open(set_path) as json_file: 
+    set_dict = json.load(json_file)
+    
+    
 eval_dict = {}
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
-for wav in d_set:
+for wav in set_dict['d']:
     case = wav.split('.')[0]
     print('evaluating performance on case', case)
     predict = case+'_rdsv.rttm'
@@ -19,7 +23,7 @@ for wav in d_set:
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
     print()
     
-for wav in t_set:
+for wav in set_dict['t']:
     case = wav.split('.')[0]
     print('evaluating performance on case', case)
     predict = case+'_rdsv.rttm'
