@@ -38,3 +38,5 @@ for wav in set_dict['t']:
 with open(eval_path,'w') as out:
     json.dump(eval_dict, out)
     print('Eval Dict Saved')
+    
+print("Avg DER:", np.mean([i for i in eval_dict.values()])
