@@ -32,7 +32,7 @@ if os.path.exists(audio_path):
         
     c_set = cases[:c_set_count]
     d_set = cases[c_set_count:d_set_count]
-    if t_lim is not none:
+    if t_lim is not None:
         t_set = cases[d_set_count:t_lim]
     else:
         t_set = cases[d_set_count:]
