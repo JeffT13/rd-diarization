@@ -31,7 +31,7 @@ if os.path.exists(audio_path):
         random.Random().shuffle(cases)
         
     c_set = cases[:c_set_count]
-    d_set = cases[c_set_count:d_set_count]
+    d_set = cases[c_set_count:(d_set_count+c_set_count)]
     if t_lim is not None:
         t_set = cases[d_set_count:t_lim]
     else:
