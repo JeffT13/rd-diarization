@@ -190,4 +190,38 @@ def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, small_seg = 2):
 
   #####
 
-  return diarized_merged   
+  return diarized_merged 
+
+
+
+def diar_to_rttm(diar, case, out_path, verbose=True):
+  torttm = []
+  for i, event in enumerate(diar):
+    torttm.append(' '.join(['SPEAKER '+case+' 1', str(event[1]), str(round(event[2]-event[1], 2)), '<NA> <NA>', event[0],'<NA> <NA>']))
+  with open(out_path+case+'_rdsv.rttm', 'w') as filehandle:
+      for listitem in torttm:
+          filehandle.write('%s\n' % listitem)
+  if verbose:
+    print('Case', case, 'diarization saved')
+
+
+def rttmto_RALrttm(case, ral, in_path, out_path, verbose=True):
+    out_diary = []
+    spkr_tracker = []
+    diary = getDiary(in_path+case+'.rttm')
+    for entry in diary:
+      counter = 0
+      temp = entry[0].split(' ')
+      if temp[7] not in spkr_tracker:
+        spkr_tracker.append(temp[7])
+      if temp[7] not in ral.RAL.keys():
+        temp[7] = ral.uid
+        counter+=1
+      out_diary.append(' '.join(temp))
+    with open(out_path+case+'_ral.rttm', 'w') as filehandle:
+        for listitem in out_diary:
+            filehandle.write('%s\n' % listitem)
+        if verbose:
+          print(case, 'rttm has been RAL converted')
+          print(len(spkr_tracker), 'total speakers')
+          print([s for s in spkr_tracker if s not in ral.RAL.keys()], 'were unreffed')          

@@ -18,7 +18,7 @@ d_set_count = 10
 
 der_collar = .5
 encoder_rate = 4
-diar_thres = .1
+diar_thresh = .1
 
 device = 'cuda'
 verbose=True

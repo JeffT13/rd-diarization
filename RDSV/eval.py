@@ -7,8 +7,7 @@ from param import *
 
 with open(set_path) as json_file: 
     set_dict = json.load(json_file)
-    
-    
+
 eval_dict = {}
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
@@ -23,6 +22,7 @@ for wav in set_dict['d']:
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
     print()
     
+print('t set')
 for wav in set_dict['t']:
     case = wav.split('.')[0]
     print('evaluating performance on case', case)
