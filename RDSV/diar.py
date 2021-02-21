@@ -8,11 +8,12 @@ from VoiceEncoder.util import diar_to_rttm, rttmto_RALrttm
 from rdsv import RefAudioLibrary, Diarize
 from param import *
 
-# Build RAL
-scotus_ral = RefAudioLibrary(c_set, inf_lab_path, rttm_path, sd_path)
-
 with open(set_path) as json_file: 
     set_dict = json.load(json_file)
+    
+# Build RAL
+scotus_ral = RefAudioLibrary(set_dict['c'], inf_lab_path, rttm_path, sd_path)
+
 for wav in set_dict['d']:
     case = wav.split('.')[0]
     print('Diarizing Case:', case)
