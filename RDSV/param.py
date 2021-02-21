@@ -1,5 +1,5 @@
 
-import random
+import random, os
 
 fp = '/scratch/jt2565/SCOTUS/'
 
@@ -23,15 +23,18 @@ t_lim = 20+(c_set_count+d_set_count)
 seed = 13
 
 #Generate random case sets
-cases = os.listdir(audio_path)
-if seed is not None:
-    random.Random(seed).shuffle(cases)
+if os.path.exists(audio_path):
+    cases = os.listdir(audio_path)
+    if seed is not None:
+        random.Random(seed).shuffle(cases)
+    else:
+        random.Random().shuffle(cases)
+        
+    c_set = cases[:c_set_count]
+    d_set = cases[c_set_count:d_set_count]
+    if t_lim is not none:
+        t_set = cases[d_set_count:t_lim]
+    else:
+        t_set = cases[d_set_count:]
 else:
-    random.Random().shuffle(cases)
-    
-c_set = cases[:c_set_count]
-d_set = cases[c_set_count:d_set_count]
-if t_lim not none:
-    t_set = cases[d_set_count:t_lim]
-else:
-    t_set = cases[d_set_count:]
+    print('File paths do not exist')

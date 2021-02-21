@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Union, List
 from time import perf_counter as timer
 
-from VoiceEncoder.hparams import *
+from rd-diarization.VoiceEncoder.hparams import *
 from VoiceEncoder.audio import preprocess_wav
 from VoiceEncoder.voice_encoder import VoiceEncoder
 
