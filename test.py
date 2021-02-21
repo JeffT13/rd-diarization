@@ -1,4 +1,4 @@
-import os, csv
+import os, csv, sys
 import torch
 import webrtcvad
 import librosa
@@ -9,11 +9,9 @@ from pathlib import Path
 from typing import Union, List
 from time import perf_counter as timer
 
-from rd-diarization.VoiceEncoder.hparams import *
-from VoiceEncoder.audio import preprocess_wav
+sys.path.append('/home/jt2565/diar/rd-diarization')
 from VoiceEncoder.voice_encoder import VoiceEncoder
-
-from utils import RefAudioLibrary, Diarize
+from RDSV.utils import RefAudioLibrary, Diarize
 from param import *
 
 print(mel_window_length, audio_norm_target_dBFS )
