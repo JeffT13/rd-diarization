@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16GB
 #SBATCH --job-name=Drun
-#SBATCH --output=d_set4.out
+#SBATCH --output=d_set5.out
 
 DIR="/scratch/jt2565/SCOTUS/inf_labelled/" #inf_label_path
 echo "$DIR"

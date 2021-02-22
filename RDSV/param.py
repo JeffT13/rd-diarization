@@ -29,7 +29,7 @@ seed = 13
 tune=True
 
 if tune:
-    encoder_rate = 2
+    encoder_rate = 4
     diar_thresh = .05
     di_path=di_path+'d/'
     verbose = False
