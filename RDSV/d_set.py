@@ -7,12 +7,6 @@ from pyannote.database.util import load_rttm
 from pyannote.metrics.diarization import DiarizationErrorRate
 from param import *
 
-#tune
-encoder_rate = 2
-diar_thresh = .05
-di_path=di_path+'d/'
-verbose = False
-
 with open(set_path) as json_file: 
     set_dict = json.load(json_file)
     

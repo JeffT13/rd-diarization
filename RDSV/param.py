@@ -26,3 +26,10 @@ verbose=True
 save_test_emb = False
 t_lim = 20+(c_set_count+d_set_count)
 seed = 13
+tune=True
+
+if tune:
+    encoder_rate = 2
+    diar_thresh = .05
+    di_path=di_path+'d/'
+    verbose = False
