@@ -32,14 +32,6 @@ for wav in set_dict['d']:
     case = wav.split('.')[0]
     print('Encoding Case:', case)
     embed, splits, info, mask = casewrttm_to_dvec(audio_path+wav, rttm_path+case+'.rttm', sd_path, device=device, verbose=verbose, rate=encoder_rate)
-    '''
-    np.save(inf_lab_path+'{}_embeds.npy'.format(case),embed[0])
-    np.save(inf_lab_path+'{}_embeds_labels.npy'.format(case),embed[1])
-    np.save(inf_lab_path+'{}_embeds_times.npy'.format(case),embed[2])
-    print('Diarizing Case:', case)
-    embed = np.load(inf_lab_path+case+'_embeds.npy')
-    time = np.load(inf_lab_path+case+'_embeds_times.npy')
-    '''
     timelst = Diarize(scotus_ral, embed[0], embed[2], thresh=diar_thresh)
     diar_to_rttm(timelst, case, di_path)
     rttmto_RALrttm(case, scotus_ral, rttm_path, di_path)

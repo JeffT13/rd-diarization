@@ -11,7 +11,7 @@ inf_lab_path = fp+'inf_labelled/'
 inf_path = fp+'inference/'
 sd_path = fp+'ral_spkr_dict.json'
 set_path = fp+'set_dict.json'
-eval_path = fp+'eval_dict.json'
+eval_path = fp+'test_eval.json'
 plot_path = fp+'plot/'
 
 c_set_count = 5
@@ -23,10 +23,10 @@ diar_thresh = .1
 
 device = 'cuda'
 verbose=True
-save_test_emb = False
+save_test_emb = True
 t_lim = 20+(c_set_count+d_set_count)
 seed = 13
-tune=True
+tune=False
 
 if tune:
     encoder_rate = 4

@@ -8,4 +8,12 @@
 #SBATCH --job-name=T
 #SBATCH --output=t_set.out
 
+
+DIR="/scratch/jt2565/SCOTUS/inference/" #inf_label_path
+echo "$DIR"
+if [-d "$DIR" ]; then 
+	rm -rf "$DIR"
+fi
+
+mkdir "$DIR"
 python ./RDSV/t_set.py

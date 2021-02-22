@@ -1,5 +1,6 @@
 import os, json
 import numpy as np
+from scipy import stats
 
 from VoiceEncoder.util import case_to_dvec
 from rdsv import RefAudioLibrary, Diarize, diar_to_rttm, rttmto_RALrttm
@@ -34,10 +35,14 @@ for wav in set_dict['t']:
     groundtruths = load_rttm(di_path+ral_label)[case]
     print(case, ' === ', metric(groundtruths, predictions, detailed=True))
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
+    print('Case', case, 'DER:', eval_dict[case])
     print()
     
 with open(eval_path,'w') as out:
     json.dump(eval_dict, out)
     print('T Set Eval Dict Saved')
     
-print("Avg DER on T set:", round(np.mean([i for i in eval_dict.values()]),3), "for (E,D):", encoder_rate, diar_thresh)
+results = [i for i in eval_dict.values()]
+print("Avg DER on T set:", round(np.mean(reuslts),3), "for (E,D):", encoder_rate, diar_thresh)
+print()
+print("Description:", stats.describe(results))
