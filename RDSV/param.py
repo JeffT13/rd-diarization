@@ -22,6 +22,6 @@ diar_thresh = .1
 
 device = 'cuda'
 verbose=True
-
+save_test_emb = False
 t_lim = 20+(c_set_count+d_set_count)
 seed = 13

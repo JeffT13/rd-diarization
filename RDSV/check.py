@@ -14,9 +14,9 @@ from VoiceEncoder.hparams import *
 from rdsv import RefAudioLibrary, Diarize
 from param import *
 
-print(mel_window_length, audio_norm_target_dBFS )
+print(mel_window_length, audio_norm_target_dBFS)
 print('---')
 print(audio_path)
+print('----')
 print(len(c_set), len(d_set), len(t_set))
-print(c_set, d_set, t_set)
-print('complete')
+print('Check passed')

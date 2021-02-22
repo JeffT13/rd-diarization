@@ -5,7 +5,7 @@
 #SBATCH --time=4:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16GB
-#SBATCH --job-name=E
-#SBATCH --output=runembed.out
+#SBATCH --job-name=Drun
+#SBATCH --output=d_set1.out
 
-python ./RDSV/embed.py
+python ./RDSV/d_set.py

@@ -3,9 +3,9 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --time=4:00:00
+#SBATCH --gres=gpu:1
 #SBATCH --mem=16GB
-#SBATCH --job-name=D
-#SBATCH --output=result.out
+#SBATCH --job-name=T
+#SBATCH --output=t_set.out
 
-python ./RDSV/diar.py
-python ./RDSV/eval.py
+python ./RDSV/t_set.py
