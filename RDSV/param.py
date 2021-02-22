@@ -12,6 +12,7 @@ inf_path = fp+'inference/'
 sd_path = fp+'ral_spkr_dict.json'
 set_path = fp+'set_dict.json'
 eval_path = fp+'eval_dict.json'
+plot_path = fp+'plot/'
 
 c_set_count = 5
 d_set_count = 10
