@@ -8,7 +8,7 @@ from pyannote.metrics.diarization import DiarizationErrorRate
 from param import *
 
 #tune
-encoder_rate = 1.5
+encoder_rate = 2.5
 diar_thresh = .1
 di_path=di_path+'d/'
 verbose = False
@@ -21,7 +21,6 @@ eval_dict = {}
 print('C Set Encoding (w/ labels)')
 for wav in set_dict['c']:
     case = wav.split('.')[0]
-    print('Encoding Case:', case)
     embed, splits, info, mask = casewrttm_to_dvec(audio_path+wav, rttm_path+case+'.rttm', sd_path, device=device, verbose=verbose, rate=encoder_rate)
     np.save(inf_lab_path+'{}_embeds.npy'.format(case),embed[0])
     np.save(inf_lab_path+'{}_embeds_labels.npy'.format(case),embed[1])
@@ -56,6 +55,7 @@ for wav in set_dict['d']:
     groundtruths = load_rttm(di_path+ral_label)[case]
     print(case, ' === ', metric(groundtruths, predictions, detailed=True))
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
+    print('Case', case, 'DER:', eval_dict[case])
     print()
        
     
