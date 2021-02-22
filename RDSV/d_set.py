@@ -8,8 +8,8 @@ from pyannote.metrics.diarization import DiarizationErrorRate
 from param import *
 
 #tune
-encoder_rate = 3.5
-diar_thresh = .1
+encoder_rate = 2
+diar_thresh = .05
 di_path=di_path+'d/'
 verbose = False
 
