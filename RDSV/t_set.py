@@ -43,6 +43,6 @@ with open(eval_path,'w') as out:
     print('T Set Eval Dict Saved')
     
 results = [i for i in eval_dict.values()]
-print("Avg DER on T set:", round(np.mean(reuslts),3), "for (E,D):", encoder_rate, diar_thresh)
+print("For (E,D):", encoder_rate, diar_thresh)
 print()
 print("Description:", stats.describe(results))

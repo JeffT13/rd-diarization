@@ -71,9 +71,9 @@ if os.path.exists(audio_path):
     c_set = cases[:c_set_count]
     d_set = cases[c_set_count:(d_set_count+c_set_count)]
     if t_lim is not None:
-        t_set = cases[d_set_count:t_lim]
+        t_set = cases[(d_set_count+c_set_count):t_lim]
     else:
-        t_set = cases[d_set_count:]
+        t_set = cases[(d_set_count+c_set_count):]
     
     set_dict = {'c':c_set, 'd':d_set, 't':t_set}
     with open(set_path, 'w') as setfile:  
