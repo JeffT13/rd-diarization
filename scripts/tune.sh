@@ -8,9 +8,11 @@
 #SBATCH --job-name=Drun
 #SBATCH --output=d_set1.out
 
-DIR="/scratch/jt2565/SCOTUS/inf_labelled/"
+DIR="/scratch/jt2565/SCOTUS/inf_labelled/" #inf_label_path
+echo "$DIR"
 if [-d "$DIR" ]; then 
-	rm -rf /scratch/jt2565/SCOTUS/inf_labelled/
+	rm -rf "$DIR"
+fi
 
-mkdir /scratch/jt2565/SCOTUS/inf_labelled/
+mkdir "$DIR"
 python ./RDSV/d_set.py
