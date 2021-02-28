@@ -3,17 +3,15 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --time=4:00:00
-#SBATCH --gres=gpu:1
 #SBATCH --mem=16GB
-#SBATCH --job-name=test
-#SBATCH --output=test.out
+#SBATCH --job-name=tune_d
+#SBATCH --output=diar_tune.out
 
-
-DIR="/scratch/jt2565/SCOTUS/inference/" #inf_label_path
+DIR="/scratch/jt2565/SCOTUS/diarization/" #di_path
 echo "$DIR"
 if [-d "$DIR" ]; then 
 	rm -rf "$DIR"
 fi
 
 mkdir "$DIR"
-python ./RDSV/t_set.py
+python ./RDSV/tune_rdsv.py

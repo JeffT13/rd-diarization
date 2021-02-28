@@ -39,5 +39,5 @@ tune_mrt = [6,8,10]
 tune_ms = [4,8,12]
 
 
-verbose=False
+verbose=True
 save_test_emb = True

@@ -58,6 +58,7 @@ for r in tune_rate:
                     eval_dict[ky] = [desc[1:4], count, der]
                     if desc[2]<temp:
                         hold = ky
+                        temp = desc[2]
     rate_dict[r] = eval_dict
     per_r.append((hold, eval_dict[hold][0][1]))
 
