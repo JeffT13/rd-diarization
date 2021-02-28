@@ -13,8 +13,8 @@ with open(set_path) as json_file:
     
 eval_dict = {}
 # Build RAL (assumes C set was processed)
-temp = [item.split('.')[0] for item in set_dict['c']] #RAL needs case name only 
-scotus_ral = RefAudioLibrary(temp, inf_lab_path, rttm_path, sd_path)
+cases = [item.split('.')[0] for item in set_dict['c']] #RAL needs case name only 
+scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal, min_ref_thresh=mrt)
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
 print('T Set Encoding (no labels)')
@@ -25,7 +25,7 @@ for wav in set_dict['t']:
     if save_test_emb:
         np.save(inf_path+'{}_embeds.npy'.format(case),embed)
         np.save(inf_path+'{}_embeds_times.npy'.format(case),info[0])
-    timelst = Diarize(scotus_ral, embed, info[0], thresh=diar_thresh)
+    timelst = Diarize(scotus_ral, embed, info[0], thresh=diar_thresh, min_seg=ms)
     diar_to_rttm(timelst, case, di_path)
     rttmto_RALrttm(case, scotus_ral, rttm_path, di_path)
     print('evaluating performance on case', case)
@@ -33,16 +33,15 @@ for wav in set_dict['t']:
     ral_label = case+'_ral.rttm'
     predictions = load_rttm(di_path+predict)[case]
     groundtruths = load_rttm(di_path+ral_label)[case]
-    print(case, ' === ', metric(groundtruths, predictions, detailed=True))
     eval_dict[case] = metric(groundtruths, predictions, detailed=True)['diarization error rate']
-    print('Case', case, 'DER:', eval_dict[case])
-    print()
+
     
-with open(eval_path,'w') as out:
+with open(test_eval_path,'w') as out:
     json.dump(eval_dict, out)
     print('T Set Eval Dict Saved')
     
-results = [i for i in eval_dict.values()]
-print("For (E,D):", encoder_rate, diar_thresh)
-print()
-print("Description:", stats.describe(results))
+der = [i for i in eval_dict.values()]
+desc = stats.describe(der)
+count = len([i for i in der if i>(desc[2]+desc[3])])
+# min/max, mean, var, 1std?
+print('Final results:', desc[1:4], count)

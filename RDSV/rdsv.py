@@ -3,7 +3,7 @@ import numpy as np
 from VoiceEncoder.util import getDiary
 
 class RefAudioLibrary:
-  def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, save=False, unref_constant = 'UnRefSpkr'):
+  def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, min_ref_thresh=8, save=False, unref_constant = 'UnRefSpkr'):
   
     self.case_set = c
     self.embed = embed_path
@@ -60,6 +60,11 @@ class RefAudioLibrary:
               RAL[spkr] = [self.get_interval_embed(start, end, load_embed[case][0], load_embed[case][1])]
 
     
+    if min_ref_thresh is not None:
+        for spkr in RAL.keys():
+            if len(RAL[spkr])<min_ref_thresh:
+                RAL.pop(spkr)
+                
     self.RAL = RAL
     if save is not False:
       with open(save, 'w') as outfile:  
@@ -91,7 +96,7 @@ class RefAudioLibrary:
     embed = raw_embed/np.linalg.norm(raw_embed,2)
     return embed
 
-def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, small_seg = 2):
+def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, min_seg = 2):
 
   '''Takes as input a dictionary of multiple reference embeddings for each speaker, as well as a list of their names. 
   Additionally takes in embeddings of the full court hearing and time intervals associated with each embedding.
@@ -167,14 +172,14 @@ def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, small_seg = 2):
   #####
 
   #####
-  #remove all small intervals less than small_seg indicated, and merge speaking durations
+  #remove all small intervals less than min_seg indicated, and merge speaking durations
   diarized_merged = []
   curr = diarized[0][0]
   start = diarized[0][1]
   end = diarized[0][2]
 
   for i in range(len(diarized)-1):
-    if (diarized[i+1][2]-diarized[i+1][1])<small_seg:
+    if (diarized[i+1][2]-diarized[i+1][1])<min_seg:
       end = diarized[i+1][2]
     else:
       if curr == diarized[i+1][0]:
