@@ -36,7 +36,7 @@ tune_rate = [1,2,3,4,5]
 tune_dt = [.05, .075, .1, .125, .15]
 tune_mal = [3,4,5]
 tune_mrt = [6,8,10]
-tune_ms = [2,4,6]
+tune_ms = [4,8,12]
 
 
 verbose=False
