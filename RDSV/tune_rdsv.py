@@ -41,7 +41,7 @@ for r in tune_rate:
                         case = wav.split('.')[0]
                         embed = np.load(path_out+'{}_embeds.npy'.format(case))
                         info = np.load(path_out+'{}_embeds_times.npy'.format(case))
-                        timelst = Diarize(scotus_ral, embed, info, thresh=d, min_seg = s)
+                        timelst = Diarize(scotus_ral, embed, info, thresh=d, min_seg = m)
                         diar_to_rttm(timelst, case, di_path_out)
                         rttmto_RALrttm(case, scotus_ral, rttm_path, di_path_out)
                         predict = case+'_rdsv.rttm'
