@@ -60,11 +60,11 @@ for r in tune_rate:
                         hold = ky
                         temp = desc[2]
     rate_dict[r] = eval_dict
-    per_r.append((hold, eval_dict[hold][0][1]))
+    per_rate_best.append((hold, eval_dict[hold][0][1]))
 
 
     
-print('Per Rate Best Param: ', per_r)
+print('Per Rate Best Param: ', per_rate_best)
 print('--- \n\n\n ---')
 with open(tune_eval_path,'w') as out:
     json.dump(rate_dict, out)
