@@ -29,7 +29,7 @@ der_collar = .5
 encoder_rate = 4
 diar_thresh = .1
 mal = 4
-mrt - 8
+mrt = 8
 ms = 5
 
 tune_rate = [1,2,3,4,5]
