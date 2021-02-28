@@ -22,7 +22,7 @@ for r in tune_rate:
     path_out = inf_lab_path+'r'+str(r)+'/'
     di_path_out = di_path+'r'+str(r)+'/'
     if os.path.exists(di_path_out):
-        files = glob.glob(di_path_out)
+        files = glob.glob(di_path_out+'*')
         if len(files)>0:
             sh.rm(files)
     else:

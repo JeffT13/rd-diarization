@@ -18,7 +18,7 @@ for r in tune_rate:
     print('Processing for rate=', r)
     path_out = inf_lab_path+'r'+str(r)+'/'
     if os.path.exists(path_out):
-        files = glob.glob(path_out)
+        files = glob.glob(path_out+'*')
         if len(files)>0:
             sh.rm(files)
     else:
