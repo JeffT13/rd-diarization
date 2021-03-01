@@ -18,4 +18,4 @@ for key in embed.keys():
     for i in run.keys():
         temp = run[i]
         if temp[0][1]<.2:
-            print(i,':', temp[0][1], np.sqrt(temp[0][2]))
+            print(i,':', temp[0][1], np.sqrt(temp[0][2]), temp[0][0][1])
