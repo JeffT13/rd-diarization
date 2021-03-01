@@ -14,7 +14,7 @@ for key in embed.keys():
     size = [i[2] for i in embed[key]]
     print('R=', key, '| avg time=', np.mean(time), ' avg size=', np.mean(size))
     
-    run = tune[key]:
+    run = tune[key]
     for i in run.keys():
         temp = run[i]
         print(i,':', temp[0][1], temp[0][2])
