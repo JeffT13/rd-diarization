@@ -33,7 +33,7 @@ for r in tune_rate:
     for a in tune_mal:
         for t in tune_mrt:
             scotus_ral = RefAudioLibrary(cases, path_out, rttm_path, sd_path, min_audio_len=a, min_ref_thresh=t)
-            per_rate_RAL[str(a)+str(t)] = [len(scotus_ral.RAL.keys()), np.mean([len(scotus_RAL.RAL[key]) for key in scotus_RAL.RAL.keys()])]
+            per_rate_RAL[str(a)+str(t)] = [len(scotus_ral.RAL.keys()), np.mean([len(scotus_ral.RAL[key]) for key in scotus_RAL.RAL.keys()])]
             eval_dict[str(a)+str(t)] = {}
             for m in tune_ms:
                 for d in tune_dt:
