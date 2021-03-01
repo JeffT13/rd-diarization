@@ -16,5 +16,5 @@ for key in embed.keys():
     
     for run in tune[key]:
         for i in run.keys():
-        temp = run[i]
-        print(i,':', temp[0][1], temp[0][2])
+            temp = run[i]
+            print(i,':', temp[0][1], temp[0][2])
