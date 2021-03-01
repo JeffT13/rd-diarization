@@ -12,9 +12,10 @@ with open(tune_eval_path) as jt:
 for key in embed.keys():
     time = [i[1] for i in embed[key]]
     size = [i[2] for i in embed[key]]
-    print('R=', key, '| avg time=', np.mean(time), ' avg size=', np.mean(size))
+    print('R=', key, '| avg size=', np.mean(size))
     
     run = tune[key]
     for i in run.keys():
         temp = run[i]
-        print(i,':', temp[0][1], temp[0][2])
+        if temp[0][1]<.2:
+            print(i,':', temp[0][1], np.sqrt(temp[0][2]))

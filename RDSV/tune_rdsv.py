@@ -53,7 +53,7 @@ for r in tune_rate:
                     #Hyperparam tuning results
                     ky = str(a)+str(t)+'|'+str(m)+str(d)
                     desc = stats.describe(der)
-                    count = len([i for i in der if i>(desc[2]+desc[3])])
+                    count = len([i for i in der if i>(desc[2]+np.sqrt(desc[3]))])
                     # min/max, mean, var, #?1std
                     eval_dict[ky] = [desc[1:4], count, der]
                     if desc[2]<temp:
