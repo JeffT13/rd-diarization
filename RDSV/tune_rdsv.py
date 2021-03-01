@@ -11,7 +11,7 @@ with open(set_path) as json_file:
     set_dict = json.load(json_file)
     
 rate_dict = {}
-per_rate_best = []
+per_rate_RAL = {}
 cases = [item.split('.')[0] for item in set_dict['c']] #RAL needs case name only 
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
@@ -33,6 +33,8 @@ for r in tune_rate:
     for a in tune_mal:
         for t in tune_mrt:
             scotus_ral = RefAudioLibrary(cases, path_out, rttm_path, sd_path, min_audio_len=a, min_ref_thresh=t)
+            per_rate_RAL[str(a)+str(t)] = [len(scotus_ral.RAL.keys()), np.mean([len(scotus_RAL.RAL[key]) for key in scotus_RAL.RAL.keys()])]
+            eval_dict[str(a)+str(t)] = {}
             for m in tune_ms:
                 for d in tune_dt:
                     # diarize development cases (loaded in)
@@ -51,21 +53,9 @@ for r in tune_rate:
                         der.append(metric(groundtruths, predictions, detailed=True)['diarization error rate'])
                         
                     #Hyperparam tuning results
-                    ky = str(a)+str(t)+'|'+str(m)+str(d)
-                    desc = stats.describe(der)
-                    count = len([i for i in der if i>(desc[2]+np.sqrt(desc[3]))])
-                    # min/max, mean, var, #?1std
-                    eval_dict[ky] = [desc[1:4], count, der]
-                    if desc[2]<temp:
-                        hold = ky
-                        temp = desc[2]
-    rate_dict[r] = eval_dict
-    per_rate_best.append((hold, eval_dict[hold][0][1]))
+                    eval_dict[str(a)+str(t)][str(m)+str(d)] = der
+    rate_dict[r] = (eval_dict, per_rate_RAL)
 
-
-    
-print('Per Rate Best Param: ', per_rate_best)
-print('--- \n\n\n ---')
 with open(tune_eval_path,'w') as out:
     json.dump(rate_dict, out)
     print('Diarization Tuning complete and dict saved')

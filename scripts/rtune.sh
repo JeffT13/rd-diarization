@@ -5,15 +5,14 @@
 #SBATCH --time=4:00:00
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16GB
-#SBATCH --job-name=test
-#SBATCH --output=test.out
+#SBATCH --job-name=rtune
+#SBATCH --output=embed_tune.out
 
-
-DIR="/scratch/jt2565/SCOTUS/inference/" #inf_label_path
+DIR="/scratch/jt2565/SCOTUS/inf_labelled/" #inf_label_path
 echo "$DIR"
 if [-d "$DIR" ]; then 
 	rm -rf "$DIR"
 fi
 
 mkdir "$DIR"
-python ./RDSV/t_set.py
+python ./RDSV/tune_rate.py

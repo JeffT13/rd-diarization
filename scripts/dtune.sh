@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=4:00:00
 #SBATCH --mem=16GB
-#SBATCH --job-name=tune_d
+#SBATCH --job-name=dtune
 #SBATCH --output=diar_tune.out
 
 DIR="/scratch/jt2565/SCOTUS/diarization/" #di_path
