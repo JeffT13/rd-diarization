@@ -17,7 +17,7 @@ embed_path = fp+'embed_dict.json'
 sd_path = fp+'ral_spkr_dict.json'
 set_path = fp+'set_dict.json'
 tune_eval_path = fp+'tune_eval.json'
-test_eval_path = fp+'test_eval.json'
+test_eval_path = fp+'test_eval.csv'
 
 
 c_set_count = 5
@@ -29,11 +29,11 @@ verbose=True
 save_test_emb = True
 
 #Test settings
-encoder_rate = 3
-mal = 5
-mrt = 8
+encoder_rate = 7
+mal = 7
+mrt = 6
 ms = 4
-diar_thresh = .1
+diar_thresh = .075
 
 #tuning ranges
 tune_rate = [1,3,5,7,10]
