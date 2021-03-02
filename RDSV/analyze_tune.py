@@ -16,9 +16,9 @@ for key in embed.keys():
     print('R=', key, '| avg size=', np.mean(size))
     
     run = tune[key]
-    for r in run.keys():
-        ral = run[r][1]
-        ev = run[r][0]
+    for r in run[0].keys():
+        ral = run[1][r]
+        ev = run[0][r]
         print('RAL settings:', r, '|', ral)
         for set in ev.keys():
             temp = stats.describe(ev[set])
