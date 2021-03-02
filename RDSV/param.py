@@ -29,11 +29,11 @@ verbose=True
 save_test_emb = True
 
 #Test settings
-encoder_rate = 7
+encoder_rate = 5
 mal = 7
 mrt = 6
 ms = 4
-diar_thresh = .075
+diar_thresh = .1
 
 #tuning ranges
 tune_rate = [1,3,5,7,10]
