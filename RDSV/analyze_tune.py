@@ -23,4 +23,5 @@ for key in embed.keys():
         for set in ev.keys():
             temp = stats.describe(ev[set])
             if temp[2]<avgder_thresh:
-                print(i,':', temp[2], np.sqrt(temp[3]), temp[1][1])
+                #Mean, SD, Max
+                print(r,'-',set,':', temp[2], np.sqrt(temp[3]), temp[1][1])
