@@ -21,7 +21,7 @@ test_eval_path = fp+'test_eval.csv'
 
 #per docket
 r_count = 2 
-d_= count = 2
+d_count = 2
 
 #total
 t_lim = 30
