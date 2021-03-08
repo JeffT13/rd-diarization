@@ -8,11 +8,5 @@
 #SBATCH --job-name=rtune
 #SBATCH --output=embed_tune.out
 
-DIR="/scratch/jt2565/SCOTUS/inf_labelled/" #inf_label_path
-echo "$DIR"
-if [-d "$DIR" ]; then 
-	rm -rf "$DIR"
-fi
-
-mkdir "$DIR"
+mkdir /scratch/jt2565/SCOTUS/inf_labelled/
 python ./RDSV/tune_rate.py

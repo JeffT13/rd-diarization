@@ -61,9 +61,12 @@ class RefAudioLibrary:
 
     
     if min_ref_thresh is not None:
+         sl = []
         for spkr in RAL.keys():
             if len(RAL[spkr])<min_ref_thresh:
-                RAL.pop(spkr)
+                sl.append(spkr)
+        for s in sl:
+          RAL.pop(spkr)
                 
     self.RAL = RAL
     if save is not False:

@@ -1,5 +1,4 @@
-
-import random, os
+#Parameters & HyperParameters
 
 seed = 13
 device = 'cuda'

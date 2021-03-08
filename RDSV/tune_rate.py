@@ -1,4 +1,4 @@
-import os, json, timeit, sh, glob
+import os, json, timeit
 import numpy as np
 
 from VoiceEncoder.util import casewrttm_to_dvec
@@ -17,11 +17,7 @@ print('Beginning Rate Tuning')
 for r in tune_rate:
     print('Processing for rate=', r)
     path_out = inf_lab_path+'r'+str(r)+'/'
-    if os.path.exists(path_out):
-        files = glob.glob(path_out+'*')
-        if len(files)>0:
-            sh.rm(files)
-    else:
+    if not os.path.exists(path_out):
         os.mkdir(path_out)
     embed_dict[r] = []
     for wav in set_dict['r']+set_dict['d']:
