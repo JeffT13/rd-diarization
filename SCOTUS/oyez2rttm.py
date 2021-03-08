@@ -60,25 +60,41 @@ if process_sd:
 
 
 
-#Generate random case sets
+#Generate case sets
+# stratified C
+# random 
+dockets = ['17', '18', '19']
+r_set = []
+d_set = []
 if os.path.exists(audio_path):
     cases = os.listdir(audio_path)
+    for d in dockets:
+        dock = [a for a in cases if a[:2]==d]
+        if seed is not None:
+            random.Random(seed).shuffle(dock)
+        else:
+            random.Random().shuffle(dock)
+        r_set.append(dock[:r_count])
+        d_set.append(dock[r_count:d_count])
+    
+    cases = [c for c in cases if c not in r_set+d_set]
     if seed is not None:
         random.Random(seed).shuffle(cases)
     else:
         random.Random().shuffle(cases)
-        
-    c_set = cases[:c_set_count]
-    d_set = cases[c_set_count:(d_set_count+c_set_count)]
     if t_lim is not None:
-        t_set = cases[(d_set_count+c_set_count):t_lim]
+        t_set = cases[:t_lim]
     else:
-        t_set = cases[(d_set_count+c_set_count):]
-    
-    set_dict = {'c':c_set, 'd':d_set, 't':t_set}
+        t_set = cases
+        
+    set_dict = {'r':r_set, 'd':d_set, 't':t_set}
     with open(set_path, 'w') as setfile:  
         json.dump(set_dict, setfile) 
     print('Case Set Dict Saved')
 
 else:
-    print('File paths do not exist')
+    print('File paths do not exist')  
+    
+        
+        
+

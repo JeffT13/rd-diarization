@@ -19,10 +19,12 @@ set_path = fp+'set_dict.json'
 tune_eval_path = fp+'tune_eval.json'
 test_eval_path = fp+'test_eval.csv'
 
+#per docket
+r_count = 2 
+d_= count = 2
 
-c_set_count = 5
-d_set_count = 10
-t_lim = 30+(c_set_count+d_set_count)
+#total
+t_lim = 30
 
 der_collar = .5
 verbose=True
@@ -36,11 +38,11 @@ ms = 4
 diar_thresh = .1
 
 #tuning ranges
-tune_rate = [1,3,5,7,10]
+tune_rate = [1,3,5,7]
 
 tune_mal = [3,5,7]
 tune_mrt = [6,8,10]
 
-tune_ms = [2,4,6,8]
+tune_ms = [2,5,8]
 tune_dt = [.05, .075, .1, .125, .15]
 

@@ -12,7 +12,7 @@ with open(set_path) as json_file:
     
 rate_dict = {}
 per_rate_RAL = {}
-cases = [item.split('.')[0] for item in set_dict['c']] #RAL needs case name only 
+cases = [item.split('.')[0] for item in set_dict['r']] #RAL needs case name only 
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
 for r in tune_rate:

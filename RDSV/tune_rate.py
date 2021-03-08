@@ -24,7 +24,7 @@ for r in tune_rate:
     else:
         os.mkdir(path_out)
     embed_dict[r] = []
-    for wav in set_dict['c']+set_dict['d']:
+    for wav in set_dict['r']+set_dict['d']:
         case = wav.split('.')[0]
         start = timeit.default_timer()
         embed, splits, info, mask = casewrttm_to_dvec(audio_path+wav, rttm_path+case+'.rttm', sd_path, device=device, verbose=verbose, rate=r)
