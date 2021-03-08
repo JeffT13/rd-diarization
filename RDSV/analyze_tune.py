@@ -3,7 +3,7 @@ import numpy as np
 from scipy import stats
 from param import *
 
-avgder_thresh = .20
+avgder_thresh = .25
 hold = 100
 with open(embed_path) as je: 
     embed = json.load(je)
@@ -26,7 +26,7 @@ for key in embed.keys():
             temp = stats.describe(ev[set])
             if temp[2]<avgder_thresh:
                 #Mean, SD, Max
-                print(r,'-',set,':', temp[2], np.sqrt(temp[3]), temp[1][1])
+                print(r,'-',set,':', round(temp[2],3), round(np.sqrt(temp[3]),3), round(temp[1][1], 3))
                 if temp[2]<hold:
                     hold=temp[2]
                     id = key+'|'+r+'|'+set

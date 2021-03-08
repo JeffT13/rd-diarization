@@ -26,6 +26,7 @@ d_count = 2
 #total
 t_lim = 30
 
+device='cuda'
 der_collar = .5
 verbose=True
 save_test_emb = True

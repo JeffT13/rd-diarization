@@ -12,7 +12,7 @@ with open(set_path) as json_file:
     set_dict = json.load(json_file)
     
 # Build RAL (assumes C set was processed)
-cases = [item.split('.')[0] for item in set_dict['c']] #RAL needs case name only 
+cases = [item.split('.')[0] for item in set_dict['r']] #RAL needs case name only 
 scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal, min_ref_thresh=mrt)
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
