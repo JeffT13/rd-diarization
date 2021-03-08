@@ -75,8 +75,9 @@ if os.path.exists(audio_path):
         else:
             random.Random().shuffle(dock)
         r_set.append(dock[:r_count])
-        d_set.append(dock[r_count:d_count])
-    
+        d_set.append(dock[r_count:(r_count+d_count)])
+    r_set = [item for sublist in r_set for item in sublist]
+    d_set = [item for sublist in d_set for item in sublist]
     cases = [c for c in cases if c not in r_set+d_set]
     if seed is not None:
         random.Random(seed).shuffle(cases)
