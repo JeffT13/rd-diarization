@@ -1,5 +1,7 @@
 
 SCOTUS/case_summaries.json
+SCOTUS/mp3_curl_cmds.sh
+SCOTUS/oyez_metadata.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

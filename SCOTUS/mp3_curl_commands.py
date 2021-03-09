@@ -51,9 +51,10 @@ def getAudio(transcripts):
     audio_list = []
     for t in transcripts:
         media_dicts = t['media_file']
-        #just incase theres more than one, there shouldnt be but they re in a weird list
-        for media_dict in media_dicts:
-            audio_list.append(media_dict['href'])
+        if media_dicts[0] is not None: #handle weird cases
+            #just incase theres more than one, there shouldnt be but they re in a weird list
+            for media_dict in media_dicts:
+                audio_list.append(media_dict['href'])
     return [num_files,audio_list]
 
 #gets transcript along with metadata
@@ -117,9 +118,9 @@ def main():
     case_summaries = case_summaries[['term', 'docket_number']]
     
     # Period of interest
-        #test
-    case_summaries_filtered = case_summaries[(case_summaries['term']=='2020')]
-    #case_summaries_filtered = case_summaries[(case_summaries['term']>'2017') & (case_summaries['term']<'2021')]
+    #test
+    #case_summaries_filtered = case_summaries[(case_summaries['term']=='2020')]
+    case_summaries_filtered = case_summaries[(case_summaries['term']>'2017') & (case_summaries['term']<'2020')]
     data = {}
 
     for term, docket_number in case_summaries_filtered.itertuples(index=False):
@@ -131,7 +132,7 @@ def main():
 
     for docket, transcript in data.items():
         if bool(data[docket]) and type(data[docket][0]['transcript']) == dict:
-            if getAudio(data[docket])[0] == 1:
+            if getAudio(data[docket])[0] == 1 and len(getAudio(data[docket])[1])==1:
                 s3_link = getAudio(data[docket])[1][0]
                 audio_data[docket] = s3_link
 
