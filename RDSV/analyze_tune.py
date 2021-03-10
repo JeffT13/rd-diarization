@@ -11,7 +11,7 @@ with open(tune_eval_path) as jt:
 
 
 for key in tune:
-    print('RAL settings:' key)
+    print('RAL settings:', key)
     for k in tune[key]:
         print('diar settings:', k)
         temp = stats.describe(tune[key][k])
