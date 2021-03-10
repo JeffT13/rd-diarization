@@ -92,7 +92,7 @@ for r in tune_rate:
     clf = OneVsRestClassifier(LogisticRegression()).fit(X, Y)
     logit = clf.predict_proba(Xd)
     for L in LR_lims:
-        print('Ensemble Classifier Accuracy for Rate | Threshold:', r, ' | ', L,' === ', round(accuracy_score(Yd, logit_thresh(logit, L)),4))
+        print('Ensemble Classifier Accuracy for Threshold:', L,' === ', round(accuracy_score(Yd, logit_thresh(logit, L)),4))
 
 
     if run_TSNE:
