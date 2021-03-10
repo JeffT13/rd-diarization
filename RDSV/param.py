@@ -34,14 +34,14 @@ t_lim = 30
 tune_rate = [1,3,5,7]
 
 tune_mal = [3,5,7]
-tune_mrt = [6,8,10]
+tune_mrt = [2,4,7]
 
-tune_ms = [2,5,8]
+tune_ms = [2,5]
 tune_dt = [.05, .075, .1, .125]
 
 #Evaluation
 der_collar = .5
-LR_lim = .9
+LR_lims = [.8, .85, .9]
 run_TSNE = False #ran locally
 
 #Test settings
