@@ -8,5 +8,12 @@
 #SBATCH --job-name=rtune
 #SBATCH --output=rates.out
 
-mkdir /scratch/jt2565/SCOTUS/inf_labelled/
+
+DIR="/scratch/jt2565/SCOTUS/inf_labelled/" 
+echo "$DIR"
+if [-d "$DIR" ]; then 
+	rm -rf "$DIR"
+fi
+
+mkdir "$DIR"
 python ./RDSV/embed_rates.py

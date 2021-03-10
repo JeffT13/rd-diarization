@@ -16,4 +16,4 @@ if [-d "$DIR" ]; then
 fi
 
 mkdir "$DIR"
-python ./RDSV/t_set.py
+python ./RDSV/final_test.py
