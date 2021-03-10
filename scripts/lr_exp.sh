@@ -8,4 +8,4 @@
 #SBATCH --job-name=LR
 #SBATCH --output=lr.out
 
-python ./RDSV/tune_rates.py
+python ./RDSV/run_LR.py
