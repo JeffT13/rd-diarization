@@ -1,4 +1,4 @@
-import os, sys, json
+import os, sys, json, random
 from math import floor
 from param import *
  
