@@ -6,11 +6,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.manifold import TSNE
- 
-from VoiceEncoder.util import casewrttm_to_dvec
-from rdsv import RefAudioLibrary, Diarize, diar_to_rttm, rttmto_RALrttm
-from pyannote.database.util import load_rttm
-from pyannote.metrics.diarization import DiarizationErrorRate
 from param import *
 
 
@@ -32,6 +27,8 @@ def logit_thresh(log, l):
 for r in tune_rate:
     print('Processing for rate=', r)
     path_out = inf_lab_path+'r'+str(r)+'/'
+    
+    
     hold_label_r = 0
     tr_seq = []
     tr_id = []
@@ -46,24 +43,18 @@ for r in tune_rate:
                 tr_id.append(id)
         if not hold_label_r:
             hold_label_r = len(tr_id)
-            
-
     X = np.asarray(tr_seq)
     Y = np.asarray(tr_id)
-    U = np.unique(Y)    
 
-    y_scotus = []
-    for i in Y:
-      y_scotus.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
-  
-  
+
+    hold_label_d = 0
     dev_seq = []
     dev_id = []
-    hold_label_d = 0
     for wav in set_dict['d']:
       case = wav.split('.')[0]
       embed = np.load(path_out+'{}_embeds.npy'.format(case))
       label = np.load(path_out+'{}_embeds_labels.npy'.format(case))
+      
       for j, id in enumerate(label):
         if id<900: # no overlap or padding 
             dev_seq.append(embed[j])
@@ -73,22 +64,10 @@ for r in tune_rate:
               dev_id.append(id)
       if not hold_label_d:
         hold_label_d = len(dev_id)
-      
-
-
     Xd = np.asarray(dev_seq)
     Yd = np.asarray(dev_id)
-    Ud = np.unique(Yd)    
 
-    y_scotusd = []
-    for i in Yd:
-      if not i==999:
-        y_scotusd.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
-      else:
-        y_scotusd.append('UnRefSpkr')
-    
-    
-
+    # Train LR
     clf = OneVsRestClassifier(LogisticRegression()).fit(X, Y)
     logit = clf.predict_proba(Xd)
     for L in LR_lims:
@@ -96,6 +75,16 @@ for r in tune_rate:
 
 
     if run_TSNE:
+        y_scotus = []
+        for i in Y:
+          y_scotus.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
+        
+        y_scotusd = []
+        for i in Yd:
+          if not i==999:
+            y_scotusd.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
+          else:
+            y_scotusd.append('UnRefSpkr')
         tsne = TSNE(n_components=2, verbose=1, perplexity=50, n_iter=5000, learning_rate=200, random_state=seed)
         tsne_results = tsne.fit_transform(X[:hold_lim_r])
         tsne_df_scale = pd.DataFrame(tsne_results, columns=['tsne1', 'tsne2'])

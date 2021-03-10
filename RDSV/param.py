@@ -41,12 +41,12 @@ tune_dt = [.05, .075, .1, .125]
 
 #Evaluation
 der_collar = .5
-LR_lims = [.8, .85, .9]
+LR_lims = [.85, .9, .95]
 run_TSNE = False #ran locally
 
 #Test settings
-save_test_emb = True
-encoder_rate = 5
+save_test_emb = False
+encoder_rate = 3
 mal = 5
 mrt = 2
 ms = 2
