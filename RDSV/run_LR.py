@@ -1,6 +1,12 @@
 import os, json, timeit
 import numpy as np
+import pandas as pd
 
+from sklearn.linear_model import LogisticRegression
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.manifold import TSNE
+ 
 from VoiceEncoder.util import casewrttm_to_dvec
 from rdsv import RefAudioLibrary, Diarize, diar_to_rttm, rttmto_RALrttm
 from pyannote.database.util import load_rttm
@@ -25,8 +31,8 @@ def logit_thresh(log, l):
 
 for r in tune_rate:
     print('Processing for rate=', r)
+    path_out = inf_lab_path+'r'+str(r)+'/'
     hold_label_r = 0
-
     tr_seq = []
     tr_id = []
     for wav in set_dict['r']:
@@ -85,7 +91,7 @@ for r in tune_rate:
 
     clf = OneVsRestClassifier(LogisticRegression()).fit(X, Y)
     logit = clf.predict_proba(Xd)
-    print('Ensemble Classifier Accuracy for Rate:' r, ' === ', round(accuracy_score(Yd, logit_thresh(logit, LR_lim)),4))
+    print('Ensemble Classifier Accuracy for Rate:', r, ' === ', round(accuracy_score(Yd, logit_thresh(logit, LR_lim)),4))
 
 
     if run_TSNE:
