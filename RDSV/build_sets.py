@@ -1,6 +1,6 @@
 import os, sys, json
 from math import floor
-from RDSV.param import *
+from param import *
  
 cases = os.listdir(audio_path)
 r_set = []
