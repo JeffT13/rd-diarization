@@ -23,8 +23,8 @@ test_eval_path = fp+'test_eval.csv'
 train_dockets = ['17']
 test_dockets = ['18']
 #per docket
-r_count = 3
-d_count = 3
+r_count = 5
+d_count = 5
 
 #total
 t_lim = 30
@@ -47,7 +47,7 @@ run_TSNE = False #ran locally
 #Test settings
 save_test_emb = True
 encoder_rate = 5
-mal = 7
+mal = 5
 mrt = 2
 ms = 2
 diar_thresh = .1
