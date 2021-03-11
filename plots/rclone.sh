@@ -3,9 +3,9 @@
 module load rclone/1.53.3
 
 
-rclone copy /scratch/jt2565/data/diarization/17-571_ral.rttm gdr:greene/info
-rclone copy /scratch/jt2565/data/diarization/17-571_rdsv.rttm gdr:greene/info
-rclone copy /scratch/jt2565/data/rttm/17-571.rttm gdr:greene/info
+rclone copy /scratch/jt2565/data/diarization/17-43_ral.rttm gdr:greene/info
+rclone copy /scratch/jt2565/data/diarization/17-43_rdsv.rttm gdr:greene/info
+rclone copy /scratch/jt2565/data/rttm/17-43.rttm gdr:greene/info
 
 
 rclone copy /scratch/jt2565/data/out/ral_spkr_dict.json gdr:greene/info
