@@ -38,18 +38,18 @@ if os.path.exists(tune_eval_path):
     hold = 100
     with open(tune_eval_path) as jt: 
         tune = json.load(jt)
-    for key in tune:
-        for k in tune[key]:
-            temp = stats.describe(tune[key][k])
-            if temp[2]<.2:
-                #Mean, SD, Max
-                if temp[2]<hold:
-                    hold=temp[2]
-                    id = key+'|'+k
-                    perm = temp
-
+    for key in tune.keys():
+        print('diar settings:', key)
+        temp = stats.describe(tune[key])
+        if temp[2]<avgder_thresh:
+            #Mean, SD, Max
+            print(round(temp[2],3), round(np.sqrt(temp[3]),3), round(temp[1][1], 3))
+            if temp[2]<hold:
+                hold=temp[2]
+                id = key
+                perm = temp
     print('Best Param:', id, ' === ', perm)
     
     cases = [item.split('.')[0] for item in set_dict['r']] 
-    scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal, min_ref_thresh=mrt)
+    scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal)
     print('\n', scotus_ral.RAL.keys())
