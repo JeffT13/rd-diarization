@@ -26,7 +26,7 @@ for wav in set_dict['t']:
     if save_test_emb:
         np.save(inf_path+'{}_embeds.npy'.format(case),embed)
         np.save(inf_path+'{}_embeds_times.npy'.format(case),info[0])
-    timelst = Diarize(scotus_ral, embed, info[0], thresh=diar_thresh)
+    timelst = Diarize(scotus_ral, embed, info[0], sim_thresh=diar, score_thresh=score)
     diar_to_rttm(timelst, case, di_path)
     rttmto_RALrttm(case, scotus_ral, rttm_path, di_path)
     predict = case+'_rdsv.rttm'
@@ -39,7 +39,7 @@ for wav in set_dict['t']:
 
 bycase = list(zip([item.split('.')[0] for item in set_dict['t']], der, size))
 desc = stats.describe(der)
-settings = ['Param:', encoder_rate, '|', mal, mrt, ' - ', ms, diar_thresh]
+settings = ['Param:', encoder_rate, '|', diar, '-', score]
 with open(test_eval_path, 'w') as f:
     write = csv.writer(f)
     write.writerow(settings)

@@ -46,4 +46,4 @@ save_test_emb = True
 encoder_rate = 5
 mal = 8
 score=.85
-diar_thresh = .1
+diar = .1
