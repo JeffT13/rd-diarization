@@ -31,7 +31,7 @@ if os.path.exists(set_path):
 if os.path.exists(lr_path):
     with open(lr_path) as f:
         lr_dict = json.load(f)
-    print('LR Results:', lr_dict[encoder_rate])
+    print('LR Results:', lr_dict[str(encoder_rate)])
     
     
 if os.path.exists(tune_eval_path):
