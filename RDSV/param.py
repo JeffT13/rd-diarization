@@ -42,7 +42,7 @@ tune_dt = [.05, .075, .1, .125]
 #Evaluation
 der_collar = .5
 LR_lims = [.85, .9, .95]
-run_TSNE = True #ran locally
+save_LR = True
 
 #Test settings
 save_test_emb = True

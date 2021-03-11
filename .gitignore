@@ -1,6 +1,8 @@
 
 SCOTUS/case_summaries.json
-
+plots/info
+plots/r1
+plots/r5
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

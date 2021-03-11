@@ -79,39 +79,14 @@ for r in tune_rate:
     rate_lr[r]=temp
 
 
-    if run_TSNE:
-        if r==tune_rate[0] or r==encoder_rate:
-            y_scotus = []
-            for i in Y:
-              y_scotus.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
-            
-            y_scotusd = []
-            for i in Yd:
-              if not i==999:
-                y_scotusd.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
-              else:
-                y_scotusd.append('UnRefSpkr')
-            tsne = TSNE(n_components=2, verbose=1, perplexity=50, n_iter=5000, learning_rate=200, random_state=seed)
-            tsne_results = tsne.fit_transform(X)
-            tsne_df_scale = pd.DataFrame(tsne_results, columns=['tsne1', 'tsne2'])
-            labels_tsne_scale = Y
-            clusters_tsne_scale = pd.concat([tsne_df_scale, pd.DataFrame({'tsne_clusters':labels_tsne_scale})], axis=1)
-
-            tsned = TSNE(n_components=2, verbose=1, perplexity=50, n_iter=5000, learning_rate=200, random_state=seed)
-            tsne_resultsd = tsned.fit_transform(Xd)
-            tsne_df_scaled = pd.DataFrame(tsne_resultsd, columns=['tsne1', 'tsne2'])
-            labels_tsne_scaled = Yd
-            clusters_tsne_scaled = pd.concat([tsne_df_scaled, pd.DataFrame({'tsne_clusters':labels_tsne_scaled})], axis=1)
-            
-            save_out = out_path+'r'+str(r)+'/'
-            if not os.path.exists(save_out):
-                os.mkdir(save_out)
-            np.save(save_out+'X.npy',X)
-            np.save(save_out+'Y.npy',Y)
-            np.save(save_out+'Xd.npy',Xd)
-            np.save(save_out+'Yd.npy',Yd) 
-            tsne_df_scale.to_csv(save_out+'tsne.csv')
-            tsne_df_scaled.to_csv(save_out+'tsned.csv')
+    if save_LR:
+        save_out = out_path+'r'+str(r)+'/'
+        if not os.path.exists(save_out):
+            os.mkdir(save_out)
+        np.save(save_out+'X.npy',X)
+        np.save(save_out+'Y.npy',Y)
+        np.save(save_out+'Xd.npy',Xd)
+        np.save(save_out+'Yd.npy',Yd) 
             
         
 with open(lr_path,'w') as out:

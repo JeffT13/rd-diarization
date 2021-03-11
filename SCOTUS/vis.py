@@ -3,6 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+
+from pyannote.database.util import load_rttm
+from pyannote.metrics.diarization import DiarizationErrorRate
+from param import *
+
 sns.set(style = "darkgrid")
 
 from sklearn.manifold import TSNE
@@ -52,3 +57,30 @@ clusters_tsne_scale = pd.concat([tsne_df_scale, pd.DataFrame({'tsne_clusters':la
 plt.figure(figsize = (12,12))
 sns.scatterplot(clusters_tsne_scale.iloc[:,0],clusters_tsne_scale.iloc[:,1],hue=y_scotus, palette='tab10', s=100, alpha=0.6).set_title('Case '+temp_case+' - Embeddings', fontsize=15)
 plt.savefig(plot_path+temp_case+'_tSNE.png')
+
+
+
+
+if r==tune_rate[0] or r==encoder_rate:
+            y_scotus = []
+            for i in Y:
+              y_scotus.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
+            
+            y_scotusd = []
+            for i in Yd:
+              if not i==999:
+                y_scotusd.append(list(spkr_dict.keys())[list(spkr_dict.values()).index(i)])
+              else:
+                y_scotusd.append('UnRefSpkr')
+            tsne = TSNE(n_components=2, verbose=1, perplexity=50, n_iter=5000, learning_rate=200, random_state=seed)
+            tsne_results = tsne.fit_transform(X)
+            tsne_df_scale = pd.DataFrame(tsne_results, columns=['tsne1', 'tsne2'])
+            labels_tsne_scale = Y
+            clusters_tsne_scale = pd.concat([tsne_df_scale, pd.DataFrame({'tsne_clusters':labels_tsne_scale})], axis=1)
+
+            tsned = TSNE(n_components=2, verbose=1, perplexity=50, n_iter=5000, learning_rate=200, random_state=seed)
+            tsne_resultsd = tsned.fit_transform(Xd)
+            tsne_df_scaled = pd.DataFrame(tsne_resultsd, columns=['tsne1', 'tsne2'])
+            labels_tsne_scaled = Yd
+            clusters_tsne_scaled = pd.concat([tsne_df_scaled, pd.DataFrame({'tsne_clusters':labels_tsne_scaled})], axis=1)
+            
