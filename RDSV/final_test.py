@@ -26,7 +26,7 @@ for wav in set_dict['t']:
     if save_test_emb:
         np.save(inf_path+'{}_embeds.npy'.format(case),embed)
         np.save(inf_path+'{}_embeds_times.npy'.format(case),info[0])
-    timelst = Diarize(scotus_ral, embed, info[0], thresh=diar_thresh, min_seg = ms)
+    timelst = Diarize(scotus_ral, embed, info[0], thresh=diar_thresh)
     diar_to_rttm(timelst, case, di_path)
     rttmto_RALrttm(case, scotus_ral, rttm_path, di_path)
     predict = case+'_rdsv.rttm'
