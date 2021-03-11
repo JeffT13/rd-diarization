@@ -19,20 +19,20 @@ set_path = out_path+'set_dict.json'
 tune_eval_path = out_path+'tune_eval.json'
 test_eval_path = out_path+'test_eval.csv'
 
-train_dockets = ['16']
+train_dockets = ['16', '18']
 test_dockets = ['17']
 #per docket
-r_count = 5
-d_count = 5
+r_count = 3
+d_count = 3
 
 #total
-t_lim = 30
+t_lim = 25
 
 
 #tuning ranges
-tune_rate = [1,3,5,7,9]
+tune_rate = [1,3,5,7]
 
-tune_mal = [3,5,7]
+tune_mal = [4,8,12]
 tune_mrt = [2,4,7]
 
 tune_ms = [2,5]
