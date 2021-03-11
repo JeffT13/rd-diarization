@@ -13,7 +13,7 @@ with open(set_path) as json_file:
     
 # Build RAL (assumes C set was processed)
 cases = [item.split('.')[0] for item in set_dict['r']] #RAL needs case name only 
-scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal, min_ref_thresh=mrt)
+scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal)
 metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
 print('T Set Encoding (no labels)')
