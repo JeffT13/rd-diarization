@@ -3,7 +3,7 @@ import numpy as np
 from VoiceEncoder.util import getDiary
 
 class RefAudioLibrary:
-  def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, min_ref_thresh=8, save=False, unref_constant = 'UnRefSpkr'):
+  def __init__(self, c, embed_path, rttm_path, spkrdict_path, judge_only=True, min_audio_len = 4, min_ref_thresh=5, save=False, unref_constant = 'UnRefSpkr'):
   
     self.case_set = c
     self.embed = embed_path
@@ -99,14 +99,15 @@ class RefAudioLibrary:
     embed = raw_embed/np.linalg.norm(raw_embed,2)
     return embed
 
-def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, min_seg = 2):
+def Diarize(ral, cont_embeds, embed_times, sim_thresh = 0.1, score_thresh=0.9, min_seg = 2):
 
   '''Takes as input a dictionary of multiple reference embeddings for each speaker, as well as a list of their names. 
   Additionally takes in embeddings of the full court hearing and time intervals associated with each embedding.
 
-  thresh = 0.15 as default - > indicates for each embedding time step that the difference between the highest sim score
-  and next highest sim score cannot be less than 0.15, otherwise label as non-judge speech
-
+  sim_thresh = 0.1 as default - > indicates threshold to label as non-judge for each embedding time step difference between the highest sim score
+  and next highest sim score, if the highest sim score score is below score_thresh
+  
+  score_thresh = 0.9 as default - > indicates similarity score threshold to consider assigning non-judge speech.
   small_seg = 1 second as default - > indicates that the shortest speaking times cannot be less than this duration
 
   Returns: diarization with speaker name and times'''
@@ -141,7 +142,7 @@ def Diarize(ral, cont_embeds, embed_times, thresh = 0.1, min_seg = 2):
       elif similarity_score > next_max_sim:
         next_max_sim = similarity_score
     
-    if (max_sim-next_max_sim) < thresh:
+    if ((max_sim-next_max_sim) < sim_thresh) and (max_sim<score_thresh):
       speak.append(ral.uid)
     else:
       speak.append(max_name)

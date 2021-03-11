@@ -34,9 +34,9 @@ t_lim = 25
 tune_rate = [1,3,5,7]
 
 tune_mal = [4,8,12]
-tune_mrt = [2,4,7]
 
-tune_ms = [2,5]
+tune_ms = [2,5,8,12]
+tune_sct = [.85, .9, .95]
 tune_dt = [.05, .075, .1, .125]
 
 #Evaluation
@@ -48,6 +48,6 @@ save_LR = True
 save_test_emb = True
 encoder_rate = 5
 mal = 8
-mrt = 2
 ms = 2
+score=.9
 diar_thresh = .075

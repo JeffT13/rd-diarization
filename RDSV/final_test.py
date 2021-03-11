@@ -18,10 +18,11 @@ metric = DiarizationErrorRate(collar=der_collar, skip_overlap=True)
 
 print('T Set Encoding (no labels)')
 der = []
+size = []
 for wav in set_dict['t']:
     case = wav.split('.')[0]
     print('Encoding Case:', case)
-    embed, info = case_to_dvec(audio_path+wav, device=device, verbose=verbose, rate=encoder_rate)
+    embed, info, sz = case_to_dvec(audio_path+wav, device=device, verbose=verbose, rate=encoder_rate)
     if save_test_emb:
         np.save(inf_path+'{}_embeds.npy'.format(case),embed)
         np.save(inf_path+'{}_embeds_times.npy'.format(case),info[0])
@@ -33,9 +34,10 @@ for wav in set_dict['t']:
     predictions = load_rttm(di_path+predict)[case]
     groundtruths = load_rttm(di_path+ral_label)[case]
     der.append(metric(groundtruths, predictions, detailed=True)['diarization error rate'])
+    size.append(sz)
 
 
-bycase = list(zip([item.split('.')[0] for item in set_dict['t']], der))
+bycase = list(zip([item.split('.')[0] for item in set_dict['t']], der, size))
 desc = stats.describe(der)
 settings = ['Param:', encoder_rate, '|', mal, mrt, ' - ', ms, diar_thresh]
 with open(test_eval_path, 'w') as f:
