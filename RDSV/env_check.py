@@ -28,6 +28,12 @@ if os.path.exists(set_path):
     print('R set:', set_dict['r'])
     print('D set:', set_dict['d'])
 
+if os.path.exists(lr_path):
+    with open(lr_path) as f:
+        lr_dict = json.load(f)
+    print('LR Results:', lr_dict[encoder_rate])
+    
+    
 if os.path.exists(tune_eval_path):
     hold = 100
     with open(tune_eval_path) as jt: 

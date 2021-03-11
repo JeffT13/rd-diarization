@@ -16,6 +16,7 @@ out_path = fp+'out/'
 
 sd_path = out_path+'ral_spkr_dict.json'
 set_path = out_path+'set_dict.json'
+lr_path = out_path+'lr_dict.json'
 tune_eval_path = out_path+'tune_eval.json'
 test_eval_path = out_path+'test_eval.csv'
 
@@ -41,7 +42,7 @@ tune_dt = [.05, .075, .1, .125]
 #Evaluation
 der_collar = .5
 LR_lims = [.85, .9, .95]
-run_TSNE = False #ran locally
+run_TSNE = True #ran locally
 
 #Test settings
 save_test_emb = False
