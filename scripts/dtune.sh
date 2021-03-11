@@ -7,7 +7,7 @@
 #SBATCH --job-name=dtune
 #SBATCH --output=diar_tune.out
 
-DIR="/scratch/jt2565/SCOTUS/diarization/" #di_path
+DIR="/scratch/jt2565/data/diarization/" #di_path
 echo "$DIR"
 if [-d "$DIR" ]; then 
 	rm -rf "$DIR"

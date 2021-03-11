@@ -9,7 +9,7 @@
 #SBATCH --output=rates.out
 
 
-DIR="/scratch/jt2565/SCOTUS/inf_labelled/" 
+DIR="/scratch/jt2565/data/inf_labelled/" 
 echo "$DIR"
 if [-d "$DIR" ]; then 
 	rm -rf "$DIR"

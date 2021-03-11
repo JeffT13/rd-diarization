@@ -9,7 +9,7 @@
 #SBATCH --output=test.out
 
 
-DIR="/scratch/jt2565/SCOTUS/inference/" #inf_path
+DIR="/scratch/jt2565/data/inference/" #inf_path
 echo "$DIR"
 if [-d "$DIR" ]; then 
 	rm -rf "$DIR"
