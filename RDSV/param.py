@@ -45,9 +45,9 @@ LR_lims = [.85, .9, .95]
 run_TSNE = True #ran locally
 
 #Test settings
-save_test_emb = False
+save_test_emb = True
 encoder_rate = 5
-mal = 7
+mal = 8
 mrt = 2
 ms = 2
 diar_thresh = .075
