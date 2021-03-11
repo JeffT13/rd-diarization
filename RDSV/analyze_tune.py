@@ -3,6 +3,7 @@ import numpy as np
 from scipy import stats
 from param import *
 
+
 avgder_thresh = .3
 hold = 100
 
