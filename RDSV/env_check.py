@@ -24,9 +24,9 @@ if os.path.exists(sd_path):
     
 if os.path.exists(set_path):
     with open(set_path) as f:
-        s = json.load(f)
-    print('R set:', s['r'])
-    print('D set:', s['d'])
+        set_dict = json.load(f)
+    print('R set:', set_dict['r'])
+    print('D set:', set_dict['d'])
 
 if os.path.exists(tune_eval_path):
     hold = 100
@@ -43,4 +43,7 @@ if os.path.exists(tune_eval_path):
                     perm = temp
 
     print('Best Param:', id, ' === ', perm)
-        
+    
+    cases = [item.split('.')[0] for item in set_dict['r']] 
+    scotus_ral = RefAudioLibrary(cases, inf_lab_path+'r'+str(encoder_rate)+'/', rttm_path, sd_path, min_audio_len=mal, min_ref_thresh=mrt)
+    print('\n', scotus_ral.RAL.keys())
