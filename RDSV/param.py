@@ -30,7 +30,7 @@ t_lim = 30
 
 
 #tuning ranges
-tune_rate = [1,3,5]
+tune_rate = [1,3,5,7,9]
 
 tune_mal = [3,5,7]
 tune_mrt = [2,4,7]
@@ -45,8 +45,8 @@ run_TSNE = False #ran locally
 
 #Test settings
 save_test_emb = False
-encoder_rate = 3
-mal = 5
+encoder_rate = 5
+mal = 7
 mrt = 2
 ms = 2
-diar_thresh = .1
+diar_thresh = .075

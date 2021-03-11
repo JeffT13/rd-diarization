@@ -5,7 +5,7 @@ import librosa
 import struct
 import numpy as np
 import pandas as pd
-from scipy.ndimage.morphology import binary_dilation
+from scipy import stats
 from pathlib import Path
 from typing import Union, List
 from time import perf_counter as timer
