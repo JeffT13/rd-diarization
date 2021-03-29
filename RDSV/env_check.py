@@ -2,10 +2,13 @@ import os, csv, sys, json
 import torch
 import webrtcvad
 import librosa
-import struct
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from scipy import stats
+from sklearn.manifold import TSNE
+from pyannote.metrics.diarization import DiarizationErrorRate
+from pyannote.core import notebook
 from pathlib import Path
 from typing import Union, List
 from time import perf_counter as timer
