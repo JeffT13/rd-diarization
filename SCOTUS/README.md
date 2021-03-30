@@ -9,6 +9,7 @@ Credit:
 - https://github.com/walkerdb/supreme_court_transcripts for oyez parsing functions in mp3-to-gcp/oyez_parser.ipynb
 
 ### Prerequisites 
+
 You will need the case_summaries.json from https://github.com/walkerdb/supreme_court_transcripts/tree/master/oyez.
 
 Most of our computing is done on an HCP that does not support the requests package and therefore some of the scripts have been split to run locally and transfer of necessary files are done manually. 
@@ -23,7 +24,8 @@ module load python/intel/3.8.6
 
 module load rclone/1.53.3 
 
-### Instructions
+### Data Pulling Instructions
+
 1. Extracting mp3 files and metadata from oyez API with **mp3_curl_commands.py**
 - NOTE: Our HPC cluster does not support the requests package, so this step happens locally. 
 - NOTE: This script extracts cases for which there is only *one* mp3 file for the corresponding case. 
@@ -42,24 +44,11 @@ module load rclone/1.53.3
 - Install current versions of ffmpeg with `module load ffmpeg/intel/3.2.2`
 - Run with `sbatch mp3_to_wav_batch.sh /path/to/files /path/to/dest` EXAMPLE: `sbatch mp3_to_wav_batch.sh /scratch/smt570/test/mp3s /scratch/smt570/test/wavs`
 
-4. Audio Splitting with **audio_split.py**
-- NOTE: This is run to convert the wav files into consumable format for our model
-- Load the right modules in HPC with: 
-
-`module purge `
-
-`module load ffmpeg/intel/3.2.2 `
-
-`module load python3/intel/3.7.3 `
-
-- NOTE: Make sure you have in the directory with the script (1) the wav files you want to split (2) oyez_metadata.json file from step 1 (3) an empty SCOTUS file and 
-- Run with `python audio_split.py`
-
-5. Transcribing WITHOUT splitting with **make_transcripts.py**
+4. Pull Transcriptions with **make_transcripts.py**
 - NOTE: This was performed in HPC 
-Alternatively, you can create transcripts for your wav files without splitting them by speaker by running `python make_transcripts.py`. Make sure this file is sitting in the same folder with all the wav files (`mv make_transcripts.py wavs` if you haven't already.) 
+Run `python make_transcripts.py`. Make sure this file is sitting in the same folder with all the wav files (`mv make_transcripts.py wavs` if you haven't already.) 
 
 
-## d-vector embedding
+### Transcription to RTTM
 
-This procedure outputs a folder for each case processed, each containing a numpy array of dvector embeddings (`case_sequence.npy`) and a numpy array of labels (`case_cluster_id.npy`) which are both the same length, as well as a csv of a list of files which were not embedded (usually do to being too short). These are formatted for [our fork of the uisrnn](https://github.com/JeffT13/uis-rnn) 
+Simply run the `oyez2rttm.py` script to write the transcriptions to the `rttm` folder in RTTM format. This also generates and saves a dictionary of present speakers and identification numbers so that each speaker is labelled consistently throughout the experiments. 
