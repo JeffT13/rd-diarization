@@ -2,7 +2,7 @@
 
 Code repository for paper [**Diarization of Legal Proceedings. Identifying and Transcribing Judicial Speech from Recorded Court Audio**]()
 
-We focus on the task of audio diarization in the legal domain, specifically on the Supreme Court of the United States Oral Arguments, accessed through the [Oyez Project](https://www.oyez.org/). In this work utilize a [speech embedding network](https://github.com/resemble-ai/Resemblyzer) (referred to as *Voice Encoder*) pre-trained by Resemble.AI with the [Generalized End-to-End Loss](https://google.github.io/speaker-id/publications/GE2E/) to encode speech into d-vectors and a pre-defined reference audio library based on annotated data. We find that by encoding reference audio for speakers and full proceedings and computing similarity scores we achieve a 13.8% Diarization Error Rate for speakers covered by the reference audio library on a held-out test set.
+We focus on the task of audio diarization in the legal domain, specifically on the Supreme Court of the United States Oral Arguments, accessed through the [Oyez Project](https://www.oyez.org/). In this work utilize a [speech embedding network](https://github.com/resemble-ai/Resemblyzer) (referred to as *Voice Encoder*) pre-trained by Resemble.AI with the [Generalized End-to-End Loss](https://arxiv.org/abs/1710.10467) to encode speech into d-vectors and a pre-defined reference audio library based on annotated data. We find that by encoding reference audio for speakers and full proceedings and computing similarity scores we achieve a 13.8% Diarization Error Rate for speakers covered by the reference audio library on a held-out test set.
 
 ## Repository Contents
 
