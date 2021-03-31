@@ -27,6 +27,8 @@ You can run the `RDSV/env_check.py` script to ensure the enviorment has been set
 # Performance
 
 
+![Scatterplot](https://github.com/JeffT13/rd-diarization/blob/main/dvector_tsne.png?raw=true)
+
 ## Acknowledgements
 
 Tremendous thanks to Professor Aaron Kaufman, Professor Michael Picheny and Professor Brian McFee for their contributions to the paper as well as their guidance and feedback on the implementation. We also thank New York University's High-Performance Computing Clusters for the computational resources and Dr. Sergey Samsonau for his help in utilizing these resources. Finally, we thank Resemble.AI for their open-source contributions to speech research and the Oyez Project for the service they provide in making Supreme Court data available. 
