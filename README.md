@@ -27,7 +27,7 @@ You can run the `RDSV/env_check.py` script to ensure the enviorment has been set
 # Performance
 
 
-![Scatterplot](https://github.com/JeffT13/rd-diarization/plots/dvector_tsne.png?raw=true)
+![Scatterplot](https://github.com/JeffT13/rd-diarization/plots/blob/main/dvector_tsne.png?raw=true)
 
 ## Acknowledgements
 
