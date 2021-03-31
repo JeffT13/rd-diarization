@@ -51,7 +51,7 @@ We also visualize the d-vectors representing judicial speech from the cases in o
 
 ## RDSV Performance
 
-The table shows the diarization performance of our tuned pipeline on the 25 cases in the test set. 
+The table shows the diarization performance of our tuned pipeline on the 25 cases in the test set. We also show a 10 minute snippet of a groundtruth case diarization (top) and our inferred diarization (bottom). This is only considered the diarization of speakers that are part of the reference set.
 
 | Metric              | Value    |
 |---------------------|----------|
@@ -60,6 +60,8 @@ The table shows the diarization performance of our tuned pipeline on the 25 case
 | Max DER             | 19.8%    |
 | Audio/Case          | 58.9 min |
 | Audio/Case post-VAD | 51.4 min |
+
+![](./plots/segplot.png)
 
 ## Acknowledgements
 
