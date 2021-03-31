@@ -27,7 +27,7 @@ You can run the `RDSV/env_check.py` script to ensure the enviorment has been set
 # Performance
 
 
-![plot](./plots/dvector_tsne.png)
+![plot](./plots/dvector_tsne.png =200x100)
 
 ## Acknowledgements
 
