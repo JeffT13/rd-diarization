@@ -4,7 +4,7 @@ seed = 13
 device = 'cuda'
 verbose=True
 
-fp = '/scratch/jt2565/data/'
+fp = '/scratch/jt2565/gs/'
 
 audio_path = fp+'audio/'
 trans_path = fp+'transcript/'
@@ -20,14 +20,14 @@ lr_path = out_path+'lr_dict.json'
 tune_eval_path = out_path+'tune_eval.json'
 test_eval_path = out_path+'test_eval.csv'
 
-train_dockets = ['16', '18']
-test_dockets = ['17']
+train_dockets = ['14', '16', '18']
+test_dockets = ['15', '17']
 #per docket
-r_count = 3
-d_count = 3
+r_count = 5
+d_count = 10
 
 #total
-t_lim = 25
+t_lim = None
 
 
 #tuning ranges
