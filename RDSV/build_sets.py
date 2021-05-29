@@ -18,7 +18,11 @@ for d in train_dockets:
 r_set = [item for sublist in r_set for item in sublist]
 d_set = [item for sublist in d_set for item in sublist]
 
-split = floor(t_lim/len(test_dockets))
+if t_lim is not None:
+    split = floor(t_lim/len(test_dockets))
+else:
+    split = 0
+    
 for t in test_dockets:
     dock = [a for a in cases if a[:2]==t]
     if seed is not None:
