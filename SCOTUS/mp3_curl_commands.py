@@ -120,7 +120,7 @@ def main():
     # Period of interest
     #test
     #case_summaries_filtered = case_summaries[(case_summaries['term']=='2020')]
-    case_summaries_filtered = case_summaries[(case_summaries['term']>='2017') & (case_summaries['term']<'2019')]
+    case_summaries_filtered = case_summaries[(case_summaries['term']>='2010') & (case_summaries['term']<'2019')]
     data = {}
 
     for term, docket_number in case_summaries_filtered.itertuples(index=False):

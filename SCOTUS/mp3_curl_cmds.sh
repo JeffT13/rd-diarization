@@ -6,6 +6,8 @@
 #SBATCH --mem=2GB 
 #SBATCH --job-name=get_oyez_mp3s 
 
+curl -L https://api.oyez.org/sites/default/files/case_files/2014/14-144/14-144_20150323-argument.delivery.mp3 -o 14-144.mp3 
+curl -L https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2016/15-1406%20/15-1406_20170110-argument.delivery.mp3 -o 15-1406 .mp3 
 curl -L https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2017/16-299/16-299_20171011-argument.delivery.mp3 -o 16-299.mp3 
 curl -L https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2017/16-285/16-285_20171002-argument.delivery.mp3 -o 16-285.mp3 
 curl -L https://s3.amazonaws.com/oyez.case-media.mp3/case_data/2017/16-424/16-424_20171004-argument.delivery.mp3 -o 16-424.mp3 
