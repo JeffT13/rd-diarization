@@ -20,8 +20,8 @@ lr_path = out_path+'lr_dict.json'
 tune_eval_path = out_path+'tune_eval.json'
 test_eval_path = out_path+'test_eval.csv'
 
-train_dockets = ['14', '16', '18']
-test_dockets = ['15', '17']
+train_dockets = ['12', '15', '18']
+test_dockets = ['13', '14', '16', '17']
 #per docket
 r_count = 5
 d_count = 10
