@@ -14,6 +14,7 @@ from typing import Union, List
 from time import perf_counter as timer
 
 from VoiceEncoder.hparams import *
+from rdsv import RefAudioLibrary
 from param import *
 
 print(mel_window_length, audio_norm_target_dBFS)
