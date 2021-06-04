@@ -45,5 +45,5 @@ save_LR = True
 save_test_emb = True
 encoder_rate = 5
 mal = 8
-score=.85
-diar = .1
+score=.8
+diar = .125
